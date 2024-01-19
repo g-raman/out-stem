@@ -1,10 +1,9 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-import reviewData from '../dev-data/review_data';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const SentimentChart = () => {
+function SentimentChart({ reviewData }) {
   const sentimentCounts = {
     delighted: 0,
     happy: 0,
@@ -40,6 +39,6 @@ const SentimentChart = () => {
   };
 
   return <Doughnut data={data} />;
-};
+}
 
 export default SentimentChart;

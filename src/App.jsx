@@ -4,6 +4,7 @@ import { OrdersChart } from './components/OrdersChart';
 import SentimentChart from './components/SentimentChart';
 import { DatePicker } from './components/ui/DatePicker';
 import orderData from './dev-data/order_data';
+import reviewData from './dev-data/review_data';
 import pricingData from './dev-data/pricing_data';
 
 const total = orderData
@@ -13,8 +14,8 @@ const total = orderData
   }, 0);
 
 function App() {
-  const [fromDate, setFromDate] = useState();
-  const [toDate, setToDate] = useState();
+  const [fromDate, setFromDate] = useState(new Date('2023-01-01 '));
+  const [toDate, setToDate] = useState(new Date('2023-12-31 '));
 
   function handleSetFromDate(date) {
     setFromDate(date);
@@ -30,6 +31,22 @@ function App() {
     else if (date < fromDate) setFromDate(date);
   }
 
+  const filteredOrderData = orderData.filter((order) => {
+    const orderDate = new Date(order.date + ' ');
+
+    return (
+      !fromDate || !toDate || (orderDate >= fromDate && orderDate <= toDate)
+    );
+  });
+
+  const filteredReviewData = reviewData.filter((review) => {
+    const reviewDate = new Date(review.date + ' ');
+
+    return (
+      !fromDate || !toDate || (reviewDate >= fromDate && reviewDate <= toDate)
+    );
+  });
+
   return (
     <div>
       <h1 className="text-center text-5xl font-bold text-red-500">
@@ -38,8 +55,8 @@ function App() {
 
       <DatePicker date={fromDate} onSetDate={handleSetFromDate} />
       <DatePicker date={toDate} onSetDate={handleSetToDate} />
-      <SentimentChart />
-      <OrdersChart />
+      <SentimentChart reviewData={filteredReviewData} />
+      <OrdersChart orderData={filteredOrderData} />
       <MonthlyRevenueChart />
       <p>${total}</p>
     </div>

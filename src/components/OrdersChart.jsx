@@ -8,7 +8,6 @@ import {
   Legend,
 } from 'chart.js';
 
-import orderData from '../dev-data/order_data';
 import { Bar } from 'react-chartjs-2';
 import { useState } from 'react';
 
@@ -34,7 +33,7 @@ const options = {
   },
 };
 
-export function OrdersChart() {
+export function OrdersChart({ orderData }) {
   const [size, setSize] = useState('A');
   const [type, setType] = useState('A');
 
