@@ -1,3 +1,4 @@
+import { OrdersChart } from './components/OrdersChart';
 import SentimentChart from './components/SentimentChart';
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       </h1>
 
       <SentimentChart />
+      <OrdersChart />
     </div>
   );
 }
