@@ -21,60 +21,64 @@ ChartJS.register(
   Legend,
 );
 
-const labels = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
-const monthOrderCounts = {};
-labels.forEach((label) => (monthOrderCounts[label.toLowerCase()] = 0));
+export function MonthlyRevenueChart({ fromDate, toDate }) {
+  let labels = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
 
-const orderDates = orderData.map((order) => order.date);
+  <fromDate></fromDate>;
+  labels = labels.slice(fromDate.getMonth(), toDate.getMonth() + 1);
 
-orderDates.forEach((date) => {
-  const month = labels[new Date(date).getMonth()].toLowerCase();
-  monthOrderCounts[month] += 1;
-});
+  const monthOrderCounts = {};
+  labels.forEach((label) => (monthOrderCounts[label.toLowerCase()] = 0));
 
-const options = {
-  responsive: true,
-  scales: {
-    y: {
-      min: 0,
-      max: Math.max(...Object.values(monthOrderCounts)) + 2,
+  const orderDates = orderData.map((order) => order.date);
+
+  orderDates.forEach((date) => {
+    const month = labels[new Date(date).getMonth()]?.toLowerCase();
+    if (month) monthOrderCounts[month] += 1;
+  });
+
+  const options = {
+    responsive: true,
+    scales: {
+      y: {
+        min: 0,
+        max: Math.max(...Object.values(monthOrderCounts)) + 2,
+      },
     },
-  },
-  plugins: {
-    legend: {
-      display: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      title: {
+        display: true,
+        text: 'Orders per Month',
+      },
     },
-    title: {
-      display: true,
-      text: 'Orders per Month',
-    },
-  },
-};
+  };
 
-const data = {
-  labels,
-  datasets: [
-    {
-      data: labels.map((label) => monthOrderCounts[label.toLowerCase()]),
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-  ],
-};
+  const data = {
+    labels,
+    datasets: [
+      {
+        data: labels.map((label) => monthOrderCounts[label.toLowerCase()]),
+        borderColor: 'rgb(255, 99, 132)',
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      },
+    ],
+  };
 
-export function MonthlyRevenueChart() {
   return <Line options={options} data={data} />;
 }
