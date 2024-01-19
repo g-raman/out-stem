@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -28,7 +29,7 @@ const options = {
     },
     title: {
       display: true,
-      text: 'Orders at Each Store',
+      text: 'Number of Items Ordered at Each Location',
     },
   },
 };

@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+/* eslint-disable react/prop-types */
 import { CalendarIcon } from '@radix-ui/react-icons';
 import { format } from 'date-fns';
 
