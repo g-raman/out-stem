@@ -6,6 +6,8 @@ import { DatePicker } from './components/ui/DatePicker';
 import orderData from './dev-data/order_data';
 import reviewData from './dev-data/review_data';
 import pricingData from './dev-data/pricing_data';
+import { Card, CardContent, CardTitle } from './components/ui/card';
+import { CookieIcon } from '@radix-ui/react-icons';
 
 const total = orderData
   .flatMap((order) => order.items)
@@ -56,17 +58,42 @@ function App() {
   });
 
   return (
-    <div>
-      <h1 className="text-center text-5xl font-bold text-red-500">
-        Hello world
-      </h1>
+    <div className="grid h-dvh w-dvw auto-rows-min grid-cols-1 gap-4 p-5">
+      <div className="flex flex-col justify-center gap-y-2">
+        <label>Filter From</label>
+        <DatePicker date={fromDate} onSetDate={handleSetFromDate} />
+      </div>
 
-      <DatePicker date={fromDate} onSetDate={handleSetFromDate} />
-      <DatePicker date={toDate} onSetDate={handleSetToDate} />
-      <SentimentChart reviewData={filteredReviewData} />
-      <OrdersChart orderData={filteredOrderData} />
-      <MonthlyRevenueChart fromDate={fromDate} toDate={toDate} />
-      <p>${total}</p>
+      <div className="flex h-full flex-col justify-center gap-y-2">
+        <label>Filter From</label>
+        <DatePicker date={toDate} onSetDate={handleSetToDate} />
+      </div>
+
+      <Card className="flex h-min w-full flex-col gap-2 px-4 py-8 text-2xl">
+        <CardTitle>Customer Satisfaction</CardTitle>
+        <CardContent className="h-max w-full">
+          <SentimentChart reviewData={filteredReviewData} />
+        </CardContent>
+      </Card>
+
+      <Card className="flex h-min w-full flex-col gap-2 p-4 pt-8 text-2xl">
+        <CardTitle># of Items Per Location</CardTitle>
+        <CardContent className="h-max">
+          <OrdersChart orderData={filteredOrderData} />
+        </CardContent>
+      </Card>
+
+      <Card className="flex h-min w-full flex-col gap-2 p-4 text-2xl">
+        <CardTitle>Monthly Revenue</CardTitle>
+        <CardContent className="h-[30dvh] w-full sm:h-[40dvh]">
+          <MonthlyRevenueChart fromDate={fromDate} toDate={toDate} />
+        </CardContent>
+      </Card>
+
+      <Card className="flex h-min w-full flex-col gap-2 p-4 text-2xl">
+        <CardTitle>Total Revenue</CardTitle>
+        <CardContent className="">${total}</CardContent>
+      </Card>
     </div>
   );
 }

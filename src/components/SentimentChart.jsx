@@ -4,6 +4,10 @@ import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+const options = {
+  responsive: true,
+};
+
 function SentimentChart({ reviewData }) {
   const sentimentCounts = {
     delighted: 0,
@@ -39,7 +43,7 @@ function SentimentChart({ reviewData }) {
     ],
   };
 
-  return <Doughnut data={data} />;
+  return <Doughnut data={data} options={options} />;
 }
 
 export default SentimentChart;

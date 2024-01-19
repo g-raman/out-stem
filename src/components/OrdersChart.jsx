@@ -23,6 +23,8 @@ ChartJS.register(
 
 const options = {
   responsive: true,
+  // maintainAspectRatio: false,
+  aspectRatio: 2,
   plugins: {
     legend: {
       display: false,
@@ -97,7 +99,8 @@ export function OrdersChart({ orderData }) {
         <option value="Hawaiian">Hawaiian</option>
         <option value="Meatlovers">Meatlovers</option>
       </select>
-      <Bar options={options} data={data} />;
+
+      <Bar options={options} data={data} />
     </div>
   );
 }
