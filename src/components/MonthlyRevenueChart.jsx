@@ -11,6 +11,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import orderData from '../dev-data/order_data';
+import pricingData from '../dev-data/pricing_data';
 
 ChartJS.register(
   CategoryScale,
@@ -38,24 +39,25 @@ export function MonthlyRevenueChart({ fromDate, toDate }) {
     'December',
   ];
 
-  <fromDate></fromDate>;
   labels = labels.slice(fromDate.getMonth(), toDate.getMonth() + 1);
 
   const monthOrderCounts = {};
   labels.forEach((label) => (monthOrderCounts[label.toLowerCase()] = 0));
 
-  const orderDates = orderData.map((order) => order.date);
+  orderData.forEach((order) => {
+    const month = labels[new Date(order.date).getMonth()]?.toLowerCase();
+    if (!month) return;
 
-  orderDates.forEach((date) => {
-    const month = labels[new Date(date).getMonth()]?.toLowerCase();
-    if (month) monthOrderCounts[month] += 1;
+    order.items.forEach((item) => {
+      monthOrderCounts[month] += pricingData[item.type][item.size];
+    });
   });
 
   const options = {
     scales: {
       y: {
         min: 0,
-        max: Math.max(...Object.values(monthOrderCounts)) + 2,
+        max: Math.max(...Object.values(monthOrderCounts)) + 10,
       },
     },
     plugins: {

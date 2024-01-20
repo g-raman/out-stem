@@ -58,12 +58,12 @@ function App() {
 
   return (
     <div className="m-auto mb-4 grid h-dvh w-dvw auto-rows-max grid-cols-1 gap-4 p-5 sm:grid-cols-2 md:grid-rows-[auto_auto_auto] lg:w-[80dvw]">
-      <div className="flex flex-col justify-center gap-y-2 text-base font-bold">
+      <div className="flex flex-col justify-center gap-y-2 text-base font-bold sm:text-xl">
         <label>Filter From</label>
         <DatePicker date={fromDate} onSetDate={handleSetFromDate} />
       </div>
 
-      <div className="flex h-full flex-col justify-center gap-y-2 text-base font-bold">
+      <div className="flex h-full flex-col justify-center gap-y-2 text-base font-bold sm:text-xl">
         <label>Filter From</label>
         <DatePicker date={toDate} onSetDate={handleSetToDate} />
       </div>
@@ -81,7 +81,7 @@ function App() {
         </Card>
 
         <Card className="flex h-min w-full flex-grow flex-col justify-stretch gap-2 p-4 text-2xl">
-          <CardTitle>Number of Pizzas Sold Per Location</CardTitle>
+          <CardTitle>Pizzas Sold Per Location</CardTitle>
           <OrdersChart orderData={filteredOrderData} />
         </Card>
       </div>
