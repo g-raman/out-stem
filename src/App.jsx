@@ -8,6 +8,7 @@ import reviewData from './dev-data/review_data';
 import pricingData from './dev-data/pricing_data';
 import { Card, CardContent, CardTitle } from './components/ui/card';
 import CountUp from 'react-countup';
+import NavBar from './components/ui/NavBar';
 
 const total = orderData
   .flatMap((order) => order.items)
@@ -58,43 +59,46 @@ function App() {
   });
 
   return (
-    <div className="m-auto mb-4 grid h-dvh w-dvw auto-rows-max grid-cols-1 gap-4 p-5 sm:grid-cols-2 md:grid-rows-[auto_auto_auto] lg:w-[80dvw]">
-      <div className="flex flex-col justify-center gap-y-2 text-base font-bold sm:text-xl">
-        <label>Filter From</label>
-        <DatePicker date={fromDate} onSetDate={handleSetFromDate} />
-      </div>
+    <>
+      <div className="m-auto mb-4 grid h-dvh w-dvw auto-rows-max grid-cols-1 gap-4 p-5 sm:grid-cols-2 md:grid-rows-[auto_auto_auto] lg:w-[80dvw]">
+        <NavBar />
+        <div className="flex flex-col justify-center gap-y-2 text-base font-bold sm:text-xl">
+          <label>Filter From</label>
+          <DatePicker date={fromDate} onSetDate={handleSetFromDate} />
+        </div>
 
-      <div className="flex h-full flex-col justify-center gap-y-2 text-base font-bold sm:text-xl">
-        <label>Filter From</label>
-        <DatePicker date={toDate} onSetDate={handleSetToDate} />
-      </div>
+        <div className="flex h-full flex-col justify-center gap-y-2 text-base font-bold sm:text-xl">
+          <label>Filter From</label>
+          <DatePicker date={toDate} onSetDate={handleSetToDate} />
+        </div>
 
-      <Card className="flex h-full w-full flex-col gap-2 p-4 text-2xl ">
-        <CardTitle>Customer Satisfaction</CardTitle>
-        <CardContent className="">
-          <SentimentChart reviewData={filteredReviewData} />
-        </CardContent>
-      </Card>
-
-      <div className="flex h-full flex-col gap-4">
-        <Card className="flex w-full  flex-col gap-2 p-4 text-2xl">
-          <CardTitle>Total Revenue</CardTitle>
-          <span>
-            $<CountUp end={total} duration={1} />
-          </span>
+        <Card className="flex h-full w-full flex-col gap-2 p-4 text-2xl ">
+          <CardTitle>Customer Satisfaction</CardTitle>
+          <CardContent className="">
+            <SentimentChart reviewData={filteredReviewData} />
+          </CardContent>
         </Card>
 
-        <Card className="flex h-min w-full flex-grow flex-col justify-stretch gap-2 p-4 text-2xl">
-          <CardTitle>Pizzas Sold Per Location</CardTitle>
-          <OrdersChart orderData={filteredOrderData} />
+        <div className="flex h-full flex-col gap-4">
+          <Card className="flex w-full  flex-col gap-2 p-4 text-2xl">
+            <CardTitle>Total Revenue</CardTitle>
+            <span>
+              $<CountUp end={total} duration={1} />
+            </span>
+          </Card>
+
+          <Card className="flex h-min w-full flex-grow flex-col justify-stretch gap-2 p-4 text-2xl">
+            <CardTitle>Pizzas Sold Per Location</CardTitle>
+            <OrdersChart orderData={filteredOrderData} />
+          </Card>
+        </div>
+
+        <Card className="flex w-full flex-col items-stretch gap-2 p-6 text-2xl sm:col-span-2">
+          <CardTitle>Monthly Revenue</CardTitle>
+          <MonthlyRevenueChart fromDate={fromDate} toDate={toDate} />
         </Card>
       </div>
-
-      <Card className="flex w-full flex-col items-stretch gap-2 p-6 text-2xl sm:col-span-2">
-        <CardTitle>Monthly Revenue</CardTitle>
-        <MonthlyRevenueChart fromDate={fromDate} toDate={toDate} />
-      </Card>
-    </div>
+    </>
   );
 }
 
