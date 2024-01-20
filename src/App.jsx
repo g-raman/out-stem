@@ -7,6 +7,7 @@ import orderData from './dev-data/order_data';
 import reviewData from './dev-data/review_data';
 import pricingData from './dev-data/pricing_data';
 import { Card, CardContent, CardTitle } from './components/ui/card';
+import CountUp from 'react-countup';
 
 const total = orderData
   .flatMap((order) => order.items)
@@ -77,7 +78,10 @@ function App() {
 
       <div className="flex h-full flex-col gap-4">
         <Card className="flex w-full  flex-col gap-2 p-4 text-2xl">
-          <CardTitle>Total Revenue</CardTitle>${total}
+          <CardTitle>Total Revenue</CardTitle>
+          <span>
+            $<CountUp end={total} duration={1} />
+          </span>
         </Card>
 
         <Card className="flex h-min w-full flex-grow flex-col justify-stretch gap-2 p-4 text-2xl">
