@@ -116,7 +116,7 @@ export function OrdersChart({ orderData }) {
       {
         label: 'Orders',
         data: Object.values(storeCounts),
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        backgroundColor: 'rgb(4, 165, 229)',
       },
     ],
   };

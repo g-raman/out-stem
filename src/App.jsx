@@ -81,7 +81,7 @@ function App() {
         </Card>
 
         <Card className="flex h-min w-full flex-grow flex-col justify-stretch gap-2 p-4 text-2xl">
-          <CardTitle># of Items Per Location</CardTitle>
+          <CardTitle>Number of Pizzas Sold Per Location</CardTitle>
           <OrdersChart orderData={filteredOrderData} />
         </Card>
       </div>

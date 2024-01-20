@@ -63,8 +63,7 @@ export function MonthlyRevenueChart({ fromDate, toDate }) {
         display: false,
       },
       title: {
-        display: true,
-        text: 'Orders per Month',
+        display: false,
       },
     },
   };
@@ -74,8 +73,8 @@ export function MonthlyRevenueChart({ fromDate, toDate }) {
     datasets: [
       {
         data: labels.map((label) => monthOrderCounts[label.toLowerCase()]),
-        borderColor: 'rgb(255, 99, 132)',
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        borderColor: 'rgb(4, 165, 229, 1)',
+        backgroundColor: 'rgb(4, 165, 229, 0.5)',
       },
     ],
   };
