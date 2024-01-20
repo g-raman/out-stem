@@ -11,6 +11,7 @@ import {
 
 import { Bar } from 'react-chartjs-2';
 import { useState } from 'react';
+import { ComboBox } from './ui/ComboBox';
 
 ChartJS.register(
   CategoryScale,
@@ -21,6 +22,44 @@ ChartJS.register(
   Legend,
 );
 
+const pizzaSizes = [
+  {
+    value: 'S',
+    label: 'Small',
+  },
+  {
+    value: 'M',
+    label: 'Medium',
+  },
+  {
+    value: 'L',
+    label: 'Large',
+  },
+];
+
+const pizzaTypes = [
+  {
+    value: 'Cheese',
+    label: 'Cheesse',
+  },
+  {
+    value: 'Pepperoni',
+    label: 'Pepperoni',
+  },
+  {
+    value: 'Deluxe',
+    label: 'Deluxe',
+  },
+  {
+    value: 'Hawaiian',
+    label: 'Hawaiian',
+  },
+  {
+    value: 'Meatlovers',
+    label: 'Meatlovers',
+  },
+];
+
 const options = {
   responsive: true,
   // maintainAspectRatio: false,
@@ -30,15 +69,14 @@ const options = {
       display: false,
     },
     title: {
-      display: true,
-      text: 'Number of Items Ordered at Each Location',
+      display: false,
     },
   },
 };
 
 export function OrdersChart({ orderData }) {
-  const [size, setSize] = useState('A');
-  const [type, setType] = useState('A');
+  const [size, setSize] = useState('');
+  const [type, setType] = useState('');
 
   const labels = ['Kanata', 'Orleans', 'Downtown', 'Sandy Hill', 'The Glebe'];
   const storeCounts = {};
@@ -50,11 +88,11 @@ export function OrdersChart({ orderData }) {
     const filtered = order.items.filter((item) => {
       const shouldInclude =
         // Include all data
-        (size === 'A' && type === 'A') ||
+        (size === '' && type === '') ||
         // Filter by type
-        (size === 'A' && item.type === type) ||
+        (size === '' && item.type === type) ||
         // Filter by size
-        (item.size === size && type === 'A') ||
+        (item.size === size && type === '') ||
         // Filter by both size and type
         (item.size === size && item.type === type);
 
@@ -84,22 +122,28 @@ export function OrdersChart({ orderData }) {
   };
 
   return (
-    <div>
-      <select value={size} onChange={(e) => setSize(e.target.value)}>
-        <option value="A">All</option>
-        <option value="S">Small</option>
-        <option value="M">Medium</option>
-        <option value="L">Large</option>
-      </select>
-      <select value={type} onChange={(e) => setType(e.target.value)}>
-        <option value="A">All</option>
-        <option value="Cheese">Cheese</option>
-        <option value="Pepperoni">Pepperoni</option>
-        <option value="Deluxe">Deluxe</option>
-        <option value="Hawaiian">Hawaiian</option>
-        <option value="Meatlovers">Meatlovers</option>
-      </select>
+    <div className="w-full">
+      <div className="mb-2 flex w-full flex-wrap justify-between">
+        <ComboBox
+          value={size}
+          onSetValue={setSize}
+          options={pizzaSizes}
+          placeholder={'Select Pizza Size'}
+          errorMsg={'No Size Found'}
+          searchPlaceholder={'Search Sizes'}
+          classNames={'w-[48%] flex-grow-1'}
+        />
 
+        <ComboBox
+          value={type}
+          onSetValue={setType}
+          options={pizzaTypes}
+          placeholder={'Select Pizza Type'}
+          errorMsg={'No Pizza Found'}
+          searchPlaceholder={'Search Pizzas'}
+          classNames={'w-[48%] flex-grow-1'}
+        />
+      </div>
       <Bar options={options} data={data} />
     </div>
   );
