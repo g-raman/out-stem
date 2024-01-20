@@ -7,7 +7,6 @@ import orderData from './dev-data/order_data';
 import reviewData from './dev-data/review_data';
 import pricingData from './dev-data/pricing_data';
 import { Card, CardContent, CardTitle } from './components/ui/card';
-import { CookieIcon } from '@radix-ui/react-icons';
 
 const total = orderData
   .flatMap((order) => order.items)
@@ -58,41 +57,38 @@ function App() {
   });
 
   return (
-    <div className="grid h-dvh w-dvw auto-rows-min grid-cols-1 gap-4 p-5">
-      <div className="flex flex-col justify-center gap-y-2">
+    <div className="m-auto mb-4 grid h-dvh w-dvw auto-rows-max grid-cols-1 gap-4 p-5 sm:grid-cols-2 md:grid-rows-[auto_auto_auto] lg:w-[80dvw]">
+      <div className="flex flex-col justify-center gap-y-2 text-base font-bold">
         <label>Filter From</label>
         <DatePicker date={fromDate} onSetDate={handleSetFromDate} />
       </div>
 
-      <div className="flex h-full flex-col justify-center gap-y-2">
+      <div className="flex h-full flex-col justify-center gap-y-2 text-base font-bold">
         <label>Filter From</label>
         <DatePicker date={toDate} onSetDate={handleSetToDate} />
       </div>
 
-      <Card className="flex h-min w-full flex-col gap-2 px-4 py-8 text-2xl">
+      <Card className="flex h-full w-full flex-col gap-2 p-4 text-2xl ">
         <CardTitle>Customer Satisfaction</CardTitle>
-        <CardContent className="h-max w-full">
+        <CardContent className="">
           <SentimentChart reviewData={filteredReviewData} />
         </CardContent>
       </Card>
 
-      <Card className="flex h-min w-full flex-col gap-2 p-4 pt-8 text-2xl">
-        <CardTitle># of Items Per Location</CardTitle>
-        <CardContent className="h-max">
+      <div className="flex h-full flex-col gap-4">
+        <Card className="flex w-full  flex-col gap-2 p-4 text-2xl">
+          <CardTitle>Total Revenue</CardTitle>${total}
+        </Card>
+
+        <Card className="flex h-min w-full flex-grow flex-col justify-stretch gap-2 p-4 text-2xl">
+          <CardTitle># of Items Per Location</CardTitle>
           <OrdersChart orderData={filteredOrderData} />
-        </CardContent>
-      </Card>
+        </Card>
+      </div>
 
-      <Card className="flex h-min w-full flex-col gap-2 p-4 text-2xl">
+      <Card className="flex w-full flex-col items-stretch gap-2 p-6 text-2xl sm:col-span-2">
         <CardTitle>Monthly Revenue</CardTitle>
-        <CardContent className="h-[30dvh] w-full sm:h-[40dvh]">
-          <MonthlyRevenueChart fromDate={fromDate} toDate={toDate} />
-        </CardContent>
-      </Card>
-
-      <Card className="flex h-min w-full flex-col gap-2 p-4 text-2xl">
-        <CardTitle>Total Revenue</CardTitle>
-        <CardContent className="">${total}</CardContent>
+        <MonthlyRevenueChart fromDate={fromDate} toDate={toDate} />
       </Card>
     </div>
   );

@@ -5,7 +5,8 @@ import { Doughnut } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const options = {
-  responsive: true,
+  // responsive: false,
+  // maintainAspectRatio: false,
 };
 
 function SentimentChart({ reviewData }) {

@@ -52,8 +52,6 @@ export function MonthlyRevenueChart({ fromDate, toDate }) {
   });
 
   const options = {
-    responsive: true,
-    maintainAspectRatio: false,
     scales: {
       y: {
         min: 0,
