@@ -13,7 +13,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 
-export function DatePicker({ date, onSetDate }) {
+export function DatePicker({ defaultMonth, date, onSetDate }) {
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -31,6 +31,7 @@ export function DatePicker({ date, onSetDate }) {
       <PopoverContent className="w-auto p-0" align="start">
         <Calendar
           mode="single"
+          defaultMonth={defaultMonth}
           selected={date}
           onSelect={onSetDate}
           initialFocus

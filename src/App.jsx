@@ -64,12 +64,20 @@ function App() {
         <NavBar />
         <div className="flex flex-col justify-center gap-y-2 text-base font-bold sm:text-xl">
           <label>Filter From</label>
-          <DatePicker date={fromDate} onSetDate={handleSetFromDate} />
+          <DatePicker
+            defaultMonth={fromDate}
+            date={fromDate}
+            onSetDate={handleSetFromDate}
+          />
         </div>
 
         <div className="flex h-full flex-col justify-center gap-y-2 text-base font-bold sm:text-xl">
           <label>Filter From</label>
-          <DatePicker date={toDate} onSetDate={handleSetToDate} />
+          <DatePicker
+            defaultMonth={toDate}
+            date={toDate}
+            onSetDate={handleSetToDate}
+          />
         </div>
 
         <Card className="flex h-full w-full flex-col gap-2 p-4 text-2xl ">
