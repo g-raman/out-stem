@@ -9,6 +9,7 @@ import pricingData from './dev-data/pricing_data';
 import { Card, CardContent, CardTitle } from './components/ui/card';
 import CountUp from 'react-countup';
 import NavBar from './components/ui/NavBar';
+import Footer from './components/ui/Footer';
 
 const total = orderData
   .flatMap((order) => order.items)
@@ -60,8 +61,8 @@ function App() {
 
   return (
     <>
-      <div className="m-auto mb-4 grid h-dvh w-dvw auto-rows-max grid-cols-1 gap-4 p-5 sm:grid-cols-2 md:grid-rows-[auto_auto_auto] lg:w-[80dvw]">
-        <NavBar />
+      <NavBar />
+      <main className="md:grid-rows-auto m-auto grid h-full w-dvw auto-rows-max grid-cols-1 gap-4 p-5 sm:grid-cols-2 lg:w-[80dvw]">
         <div className="flex flex-col justify-center gap-y-2 text-base font-bold sm:text-xl">
           <label>Filter From</label>
           <DatePicker
@@ -105,7 +106,9 @@ function App() {
           <CardTitle>Monthly Revenue</CardTitle>
           <MonthlyRevenueChart fromDate={fromDate} toDate={toDate} />
         </Card>
-      </div>
+      </main>
+
+      <Footer />
     </>
   );
 }
