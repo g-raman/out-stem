@@ -1,5 +1,18 @@
 # OutStem Coding Challenge
 
+## Summary
+
+My submission for OutStem Summer 2024 coding challenge
+
+## Website
+
+[Click here](https://stellar-druid-ce276f.netlify.app/)
+
+## Current Issues
+
+Netlify deployment shows blank page on Safari and mobile browsers.
+Works great on other browsers and devices though.
+
 ## Tech Stack
 
 ReactJS, Tailwind, ChartJs, Shadcn/ui
