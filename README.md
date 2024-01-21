@@ -30,3 +30,4 @@ ReactJS, Tailwind, ChartJs, Shadcn/ui
 
 1. Responsive layout that scales well for various screen sizes.
 2. Small tasteful animations added such as number increment animation.
+3. Graphs have smooth animation on page load
