@@ -4,6 +4,15 @@
 
 My submission for OutStem Summer 2024 coding challenge
 
+## Instructions
+
+```
+git clone git@github.com:g-raman/out-stem.git
+cd out-stem
+npm i
+npm run dev
+```
+
 ## Website
 
 <a href="https://stellar-druid-ce276f.netlify.app/" target="_blank">Click here</a>
