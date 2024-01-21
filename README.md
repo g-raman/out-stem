@@ -6,7 +6,7 @@ My submission for OutStem Summer 2024 coding challenge
 
 ## Website
 
-[Click here](https://stellar-druid-ce276f.netlify.app/)
+<a href="https://stellar-druid-ce276f.netlify.app/" target="_blank">Click here</a>
 
 ## Current Issues
 
